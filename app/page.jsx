@@ -1,9 +1,13 @@
+"use client";
 import TopicsList from '@/components/TopicsList'
+import dynamic from "next/dynamic";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
     <TopicsList/>
     </>
   )
 }
+
+export default dynamic (() => Promise.resolve(Home), {ssr: false})
