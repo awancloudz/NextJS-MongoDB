@@ -1,11 +1,14 @@
 "use client";
 import TopicsList from '@/components/TopicsList'
 import dynamic from "next/dynamic";
+import { Suspense } from 'react'
 
 const Home = () => {
   return (
     <>
-    <TopicsList/>
+    <Suspense fallback={<p>Loading Topics...</p>}>
+      <TopicsList/>
+    </Suspense>
     </>
   )
 }
