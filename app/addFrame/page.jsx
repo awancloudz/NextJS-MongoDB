@@ -8,32 +8,37 @@ export default function AddTopic(){
     const [jumlah, setJumlah] = useState("1");
     const router = useRouter();
     const handleSubmit = async (e) =>{
-        e.preventDefault();        
-        try {
-            const res = await fetch("/api/frames",{
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json",
-                },
-                body: JSON.stringify({cabang, barcode, jumlah}),
-            });
+        e.preventDefault(); 
+        if(!cabang || !barcode || !jumlah){
+            alert("Cabang/Barcode/Jumlah Wajib Diisi!")
+        }
+        else{       
+            try {
+                const res = await fetch("/api/frames",{
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                    },
+                    body: JSON.stringify({cabang, barcode, jumlah}),
+                });
 
-            if(res.ok){
-                alert("Simpan Data Sukses!", res);
-                setBarcode("");
-                setJumlah(1);
-                const nextfield = document.querySelector(
-                    `input[name="barcode"]`
-                );
-                nextfield.focus();
-                // router.push("/addFrame");
-                // router.refresh();
+                if(res.ok){
+                    alert("Simpan Data Sukses!", res);
+                    setBarcode("");
+                    setJumlah(1);
+                    const nextfield = document.querySelector(
+                        `input[name="barcode"]`
+                    );
+                    nextfield.focus();
+                    // router.push("/addFrame");
+                    // router.refresh();
+                }
+                else{
+                    throw new Error("Failed to create a data")
+                }
+            } catch (error) {
+                console.log(error);
             }
-            else{
-                throw new Error("Failed to create a data")
-            }
-        } catch (error) {
-            console.log(error);
         }
     }
 
