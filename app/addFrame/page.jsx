@@ -19,11 +19,15 @@ export default function AddTopic(){
             });
 
             if(res.ok){
-                alert("Simpan Data Sukses!");
+                alert("Simpan Data Sukses!", res);
                 setBarcode("");
                 setJumlah(1);
-                router.push("/addFrame");
-                router.refresh();
+                const nextfield = document.querySelector(
+                    `input[name="barcode"]`
+                );
+                nextfield.focus();
+                // router.push("/addFrame");
+                // router.refresh();
             }
             else{
                 throw new Error("Failed to create a data")
@@ -51,7 +55,7 @@ export default function AddTopic(){
                 <option value="Jatisari">Jatisari</option>
                 <option value="Tegal">Tegal</option>
             </select>
-            <input 
+            <input name="barcode"
             onChange={(e) => setBarcode(e.target.value)}
             value={barcode} 
             className="border border-slate-500 px-8 py-2" type="text" placeholder="Barcode"/>
