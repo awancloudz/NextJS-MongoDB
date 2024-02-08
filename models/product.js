@@ -1,8 +1,9 @@
 import mongoose, {Schema} from "mongoose";
 
-const frameSchema = new Schema(
+const productSchema = new Schema(
     {
         cabang: String,
+        jenisproduk: String,
         barcode: String,
         jumlah: Number
     },
@@ -11,6 +12,6 @@ const frameSchema = new Schema(
     }
 );
 
-const Frame = mongoose.models.Frame || mongoose.model("Frame", frameSchema);
+const Product = mongoose.models.Product || mongoose.model("Product", productSchema);
 
-export default Frame;
+export default Product;

@@ -4,22 +4,24 @@ import { useRouter } from "next/navigation";
 
 export default function AddTopic(){
     const [cabang, setCabang] = useState("");
+    const [jenisproduk, setJenis] = useState("");
     const [barcode, setBarcode] = useState("");
     const [jumlah, setJumlah] = useState("1");
     const router = useRouter();
     const handleSubmit = async (e) =>{
         e.preventDefault(); 
-        if(!cabang || !barcode || !jumlah){
-            alert("Cabang/Barcode/Jumlah Wajib Diisi!")
+        if(!cabang || !jenisproduk || !barcode || !jumlah){
+            alert("Cabang/JenisProduk/Barcode/Jumlah Wajib Diisi!")
         }
         else{       
             try {
-                const res = await fetch("/api/frames",{
+                const res = await fetch("/api/products",{
                     method: "POST",
+                    cache: "no-store",
                     headers: {
                         "Content-type": "application/json",
                     },
-                    body: JSON.stringify({cabang, barcode, jumlah}),
+                    body: JSON.stringify({cabang, jenisproduk, barcode, jumlah}),
                 });
 
                 if(res.ok){
@@ -45,10 +47,6 @@ export default function AddTopic(){
     return(
         <>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3 ">
-            {/* <input
-            onChange={(e) => setCabang(e.target.value)}
-            value={cabang} 
-            className="border border-slate-500 px-8 py-2" type="text" placeholder="Cabang"/> */}
             <select 
             onChange={(e) => setCabang(e.target.value)}
             value={cabang} 
@@ -59,6 +57,15 @@ export default function AddTopic(){
                 <option value="Ngaliyan">Ngaliyan</option>
                 <option value="Jatisari">Jatisari</option>
                 <option value="Tegal">Tegal</option>
+            </select>
+            <select 
+            onChange={(e) => setJenis(e.target.value)}
+            value={jenisproduk} 
+            className="border border-slate-500 px-8 py-2">
+                <option value="">-Pilih Jenis Produk-</option>
+                <option value="frame">Frame</option>
+                <option value="softlens">Softlens</option>
+                <option value="others">Others</option>
             </select>
             <input name="barcode"
             onChange={(e) => setBarcode(e.target.value)}

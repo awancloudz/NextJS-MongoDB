@@ -3,13 +3,13 @@
 import { HiOutlineTrash } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 
-export default function RemoveBtnFrame({ id }){
+export default function RemoveBtnProduct({ id }){
     const router = useRouter();
-    const removeFrame = async() => {
+    const removeProduct = async() => {
         const confirmed = confirm("Are you sure?");
 
         if(confirmed){
-            const res = await fetch(`/api/frames?id=${id}`,{
+            const res = await fetch(`/api/products?id=${id}`,{
                 method: "DELETE",
             });
             
@@ -21,7 +21,7 @@ export default function RemoveBtnFrame({ id }){
 
     return (
         <>
-        <button onClick={removeFrame} className="text-red-400">
+        <button onClick={removeProduct} className="text-red-400">
             <HiOutlineTrash size={24}/>
         </button>
         </>

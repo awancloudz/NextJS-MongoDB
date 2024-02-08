@@ -4,7 +4,10 @@ export default function Navbar(){
         <>
         <nav className="flex justify-between items-center bg-slate-800 px-8 py-3">
             <Link className="text-white font-bold" href={"/"}>Home</Link>
-            <Link className="bg-white p-2" href={"/addFrame"}>Add Frame</Link>
+            <Link className="text-white font-bold" href={"/products/frame"}>Frame</Link>
+            <Link className="text-white font-bold" href={"/products/softlens"}>Softlens</Link>
+            <Link className="text-white font-bold" href={"/products/others"}>Others</Link>
+            <Link className="bg-white p-2" href={"/addProduct"}>Add Product</Link>
         </nav>
         </>
     )

@@ -1,5 +1,5 @@
 "use client";
-import FrameList from '@/components/FrameList';
+import ProducList from '@/components/ProductList';
 import TopicsList from '@/components/TopicsList'
 import dynamic from "next/dynamic";
 import { Suspense } from 'react'
@@ -9,7 +9,7 @@ const Home = () => {
     <>
     <Suspense fallback={<p>Loading...</p>}>
       {/* <TopicsList/> */}
-      <FrameList/>
+      <ProducList/>
     </Suspense>
     </>
   )
